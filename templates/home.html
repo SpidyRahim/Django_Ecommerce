@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Home {% endblock title %}
+
+{% block content %}
+
+{% include 'slider.html' %}
+
+
+<!-- Features Section End -->
+
+<!-- Latest Product Begin -->
+<section class="latest-products spad">
+    <div class="container">
+        <div class="product-filter">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="section-title">
+                        <h2>Featured Categories</h2>
+                    </div>
+                    <ul class="product-controls">
+                        <li data-filter="*">All</li>
+                        {% for category in featured_categories %}
+                        <li data-filter=".{{category.slug}}">{{category.title|title}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="product-list">
+            {% for category in featured_categories %}
+            {% for product in category.products.all %}
+            <div class="col-lg-3 col-sm-6 mix {{category.slug}}">
+                <div class="single-product-item">
+                    <figure>
+                        <a href="{% url 'product-details' product.slug %}"><img style="height: 200px;"
+                                src="{{product.thumbnail}}" alt=""></a>
+                        <div class="p-status">New</div>
+                    </figure>
+                    <div class="product-text">
+                        <a class="text-decoration-none" href="{% url 'product-details' product.slug %}">
+                            <h6>{{product.title}}</h6>
+                        </a>
+                        <p>${{product.price}}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- Latest Product End -->
+
+
+
+<!-- Ekhane Notun Products asbe -->
+<section class="latest-products spad">
+    <div class="container">
+        <div class="product-filter">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="section-title">
+                        <h2>Featured Products</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="product-list">
+            {% for product in featured_products %}
+            <div class="col-lg-3 col-sm-6 mix">
+                <div class="single-product-item">
+                    <figure>
+                        <a href="{% url 'product-details' product.slug %}"><img style="height: 200px;"
+                                src="{{product.thumbnail}}" alt=""></a>
+                        <div class="p-status">New</div>
+                    </figure>
+                    <div class="product-text">
+                        <a class="text-decoration-none" href="{% url 'product-details' product.slug %}">
+                            <h6>{{product.title}}</h6>
+                        </a>
+                        <p>${{product.price}}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- Ekhane Sesh -->
+
+
+
+
+<section class="features-section spad">
+    <div class="features-ads">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-4">
+                    <div class="single-features-ads first">
+                        <img src="https://cdn.dribbble.com/users/1447046/screenshots/7813949/media/2e5dcde12e9e661e3931ad3caf77affb.gif" alt="">
+                        <h4>Free shipping</h4>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="single-features-ads second">
+                        <img src="https://cdn.dribbble.com/users/1866186/screenshots/6682373/cashback_happiness.gif" alt="">
+                        <h4><br>100% Money back </h4>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="single-features-ads">
+                        <img src="https://images.prismic.io/smarttask/aa0a44c7-b484-4768-9b30-e0403879cd84_livechat.gif" alt="">
+                        <h4><br><br>Online support 24/7</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
